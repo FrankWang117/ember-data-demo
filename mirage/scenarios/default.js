@@ -1,9 +1,12 @@
-export default function(/* server */) {
+// import { Server } from 'tls';
 
-  /*
-    Seed your development database using your factories.
-    This data will not be loaded in your tests.
-  */
+export default function (server) {
 
-  // server.createList('post', 10);
+	/*
+	  Seed your development database using your factories.
+	  This data will not be loaded in your tests.
+	*/
+
+	// server.createList('post', 10);
+	server.createList('author', 10);
 }

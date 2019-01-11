@@ -22,15 +22,9 @@ export default function () {
 
 		  http://www.ember-cli-mirage.com/docs/v0.4.x/shorthands/
 		*/
-	this.namespace = '/';
+	this.namespace = 'api';
+
 	this.get('/authors', (schema) => {
-		// return {
-		// 	authors: [
-		// 		{ id: 1, name: 'Zelda' },
-		// 		{ id: 2, name: 'Link' },
-		// 		{ id: 3, name: 'Epona' }
-		// 	]
-		// };
 		return schema.authors.all();
 	});
 }

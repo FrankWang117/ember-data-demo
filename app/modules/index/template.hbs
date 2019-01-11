@@ -1,2 +1,19 @@
 <h1 local-class="title">Welcome Come</h1>
+<table>
+	<th>
+	<td>name</td>
+	<td>age</td>
+	<td>avatar</td>
+	</th>
+	<tbody>
+		{{#each model.data as |item|}}
+			<tr>
+				<td>{{item.attributes.firstName}}</td>
+				<td>{{item.attributes.lastName}}</td>
+				<td>{{item.attributes.age}}</td>
+				<td><img src={{item.attributes.avatar}} alt={{item.attributes.firstName}}></td>
+			</tr>
+		{{/each}}
+	</tbody>
+</table>
 {{outlet}}
