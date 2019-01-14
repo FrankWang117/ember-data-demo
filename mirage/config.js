@@ -27,4 +27,28 @@ export default function () {
 	this.get('/authors', (schema) => {
 		return schema.authors.all();
 	});
+
+	this.get('/people', () => {
+		return {
+			'data': [{
+				'type': 'people',
+				'pKey': '1143111',
+				'attributes': {
+					'FirstName': 'Jeff',
+					'LastName': 'Atwood',
+					'ThePersonSelfHeight': 175,
+					'Birthday': new Date().getTime()
+				}
+			}, {
+				'type': 'people',
+				'pKey': '111112',
+				'attributes': {
+					'FirstName': 'Yehuda',
+					'LastName': 'Katz',
+					'ThePersonSelfHeight': 168,
+					'Birthday': new Date('2011-11-11 11:11:11').getTime()
+				}
+			}]
+		};
+	});
 }

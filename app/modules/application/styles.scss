@@ -1,0 +1,31 @@
+header {
+	height: 80px;
+}
+
+.body {
+	display: flex;
+	height: calc(100% - 80px);
+
+	aside {
+		flex: 0 0 240px;
+		height: 100%;
+
+		ul {
+			list-style: none;
+
+			li {
+				cursor: pointer;
+			}
+
+			:global(.li-active) {
+				color: lightblue;
+			}
+		}
+	}
+
+	.container {
+		flex: 1;
+		height: 100%;
+		overflow: auto;
+	}
+}

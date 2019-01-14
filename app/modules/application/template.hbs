@@ -1,1 +1,15 @@
-{{outlet}}
+<header>
+	Ember Data Demo
+</header>
+<section local-class="body">
+	<aside>
+		<ul>
+			{{#link-to "customizing-serializer" tagName='li' activeClass='li-active'}}
+				customizing-serializer
+			{{/link-to}}
+		</ul>
+	</aside>
+	<section local-class="container">
+		{{outlet}}
+	</section>
+</section>

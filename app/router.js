@@ -7,6 +7,7 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function () {
+	this.route('customizing-serializer');
 });
 
 export default Router;
