@@ -7,7 +7,10 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function () {
-	this.route('customizing-serializer');
+	this.route('customizing-serializer', function () {
+		this.route('format');
+		this.route('transform');
+	});
 });
 
 export default Router;

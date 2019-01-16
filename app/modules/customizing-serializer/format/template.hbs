@@ -1,0 +1,28 @@
+<h3>Format Response</h3>
+<p></p>
+<table class="table">
+	<thead class="thead-dark">
+		<tr>
+			<th>brand</th>
+			<th>capacity</th>
+			<th>depth</th>
+			<th>display</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{#each model.phoneFA as |phone|}}
+			<tr>
+				<td>{{phone.brand}}</td>
+				<td>{{phone.capacity}}</td>
+				<td>{{phone.depth}}</td>
+				<td>{{phone.display}}</td>
+			</tr>
+		{{/each}}
+		<tr>
+			<td>{{model.phoneQR.brand}}</td>
+			<td>{{model.phoneQR.capacity}}</td>
+			<td>{{model.phoneQR.depth}}</td>
+			<td>{{model.phoneQR.display}}</td>
+		</tr>
+	</tbody>
+</table>

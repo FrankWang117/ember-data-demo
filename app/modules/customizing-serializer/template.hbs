@@ -1,23 +1,9 @@
-{{!-- {{outlet}} --}}
-<h2>get People list</h2>
-<p>后端数据采用大驼峰法，前端的为一般的驼峰法</p>
-<table>
-	<th>
-	<td>firstName</td>
-	<td>lastName</td>
-	<td>birthday</td>
-	<td>collage</td>
-	<td>id</td>
-	</th>
-	<tbody>
-		{{#each model as |p|}}
-			<tr>
-				<td>{{p.data.firstName}}</td>
-				<td>{{p.data.lastName}}</td>
-				<td>{{p.data.birthday}}</td>
-				<td>{{p.data.height}}cm</td>
-				<td>{{p.id}}</td>
-			</tr>
-		{{/each}}
-	</tbody>
-</table>
+<nav>
+	{{#link-to "customizing-serializer" activeClass="li-active" }}
+		customizingSerializer
+	{{/link-to}}
+	{{#link-to "customizing-serializer.format"  activeClass="li-active"}}
+		format
+	{{/link-to}}
+</nav>
+{{outlet}}

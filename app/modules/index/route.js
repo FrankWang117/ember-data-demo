@@ -5,7 +5,7 @@ export default Route.extend({
 
 	model() {
 		// let author = this.store.findAll('author');
-		let author = $.getJSON('/api/authors');
+		let author = $.getJSON('/authors');
 
 
 		// return RSVP.hash({

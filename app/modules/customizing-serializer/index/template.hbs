@@ -1,0 +1,25 @@
+<h2>get People list</h2>
+<p>后端数据采用大驼峰法，前端的为一般的驼峰法</p>
+<table class="table">
+	<thead class="thead-dark">
+		<tr>
+			<th>firstName</th>
+			<th>lastName</th>
+			<th>birthday</th>
+			<th>collage</th>
+			<th>id</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		{{#each model as |p|}}
+			<tr>
+				<td>{{p.firstName}}</td>
+				<td>{{p.lastName}}</td>
+				<td>{{p.birthday}}</td>
+				<td>{{p.height}}cm</td>
+				<td>{{p.id}}</td>
+			</tr>
+		{{/each}}
+	</tbody>
+</table>
