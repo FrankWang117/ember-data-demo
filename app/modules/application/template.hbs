@@ -3,13 +3,16 @@
 </header>
 <section local-class="body">
 	<aside>
-		<ul>
-			{{#link-to "customizing-serializer" tagName='li' activeClass='li-active'}}
-				customizing-serializer
+		<ul class="list-group">
+			{{#link-to "customizing-serializer" tagName='li' class="list-group-item" }}
+				JSONAPISerializer
+			{{/link-to}}
+			{{#link-to "jsonapiadapter" tagName='li' class="list-group-item"}}
+				JSONAPIAdapter
 			{{/link-to}}
 		</ul>
 	</aside>
-	<section local-class="container">
+	<section class="container">
 		{{outlet}}
 	</section>
 </section>

@@ -5,19 +5,15 @@ export default DS.JSONAPISerializer.extend({
 		return key;
 	},
 	payloadKeyFromModelName(key) {
-		console.log('hook serialize');
-
 		return key;
 	},
 	serialize(snapshot, options) {
-		console.log('hook serialize');
 		let json = this._super(...arguments);
 
 		json.data.attributes.depth = json.data.attributes.size.depth;
 		return json;
 	},
 	serializeAttribute(snapshot, json, key, attributes) {
-		console.log('hook serializeAAAAA');
 
 		json.attributes = json.attributes || {};
 		this._super(snapshot, json.attributes, key, attributes);
