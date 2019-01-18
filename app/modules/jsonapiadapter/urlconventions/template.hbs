@@ -17,6 +17,14 @@
 				{{/each}}
 			</tr>
 		{{/each}}
+		{{!-- <tr>
+			<td>{{model.id}}</td>
+			<td>{{model.title}}</td>
+			<td>{{model.content}}</td>
+			{{#each model.comments as |comment|}}
+				<td>{{comment.commentator}}</td>
+			{{/each}}
+		</tr> --}}
 	</tbody>
 </table>
 <table class="table mt-3">
@@ -31,6 +39,30 @@
 				<td>{{campus.id}}</td>
 				<td>{{campus.name}}</td>
 				<td>{{campus.rank}}</td>
+			</tr>
+		{{/each}}
+	</tbody>
+</table>
+<table class="table text-center">
+	<thead class="thead-light">
+		<th>Id</th>
+		<th>Name</th>
+		<th>Location</th>
+		<th>Employee</th>
+		<th>Add Record</th>
+		<th>Update Record</th>
+		<th>Delete Record</th>
+	</thead>
+	<tbody>
+		{{#each model.company as |comp index|}}
+			<tr>
+				<td>{{comp.id}}</td>
+				<td>{{comp.name}}</td>
+				<td>{{comp.location}}</td>
+				<td>{{comp.employee}}</td>
+				<td> <button type="button" class="btn btn-primary" {{action "addRecord" index}}>Add</button> </td>
+				<td> <button type="button" class="btn btn-info" {{action "updateRecord" comp.id}}>Update</button> </td>
+				<td> <button type="button" class="btn btn-danger" {{action "deleteRecord" comp.id}}>Delete</button> </td>
 			</tr>
 		{{/each}}
 	</tbody>

@@ -4,8 +4,8 @@ import $ from 'jquery';
 export default Route.extend({
 
 	model() {
-		// let author = this.store.findAll('author');
-		let author = $.getJSON('/authors');
+		let author = this.store.findAll('author');
+		// let author = $.getJSON('/authors');
 
 
 		// return RSVP.hash({
@@ -18,12 +18,7 @@ export default Route.extend({
 
 		// });
 
-		author.then(data => {
-			console.log(data);
-		});
 
 		return author;
-		// console.log(author.id);
-		// console.log(author.isNew());
 	}
 });

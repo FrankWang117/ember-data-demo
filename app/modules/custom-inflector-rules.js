@@ -8,5 +8,6 @@ inflector.irregular('campus', 'campuses');
 // Tell the inflector that the plural of "advice" is "advice"
 inflector.uncountable('advice');
 
+
 // Modules must have an export, so we just export an empty object here
 export default {};

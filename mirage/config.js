@@ -1,6 +1,8 @@
+import { Factory, faker } from 'ember-cli-mirage';
+
 export default function () {
 
-	// this.namespace = 'api';
+	this.namespace = '/';
 
 	this.get('/authors', (schema) => {
 		return schema.authors.all();
@@ -82,8 +84,94 @@ export default function () {
 						]
 					}
 				}
-			}],
-			'included': [{
+			}]
+			// 'included': [{
+			// 	'type': 'comment',
+			// 	'id': 1,
+			// 	'attributes': {
+			// 		'commentator': 'Jeff',
+			// 		'content': 'Good Very Good',
+			// 		'time': new Date('2018-11-01').getTime(),
+			// 		'isLike': true,
+			// 		'reply': 115
+			// 	}
+			// }, {
+			// 	'type': 'comment',
+			// 	'id': 2,
+			// 	'attributes': {
+			// 		'commentator': 'Tom',
+			// 		'content': 'NOt GOOD ENOUGH',
+			// 		'time': new Date('2018-11-08').getTime(),
+			// 		'isLike': false,
+			// 		'reply': 555
+			// 	}
+			// }]
+		};
+	});
+
+	this.get('/posts/:id', () => {
+		return {
+			'data': {
+				'type': 'post',
+				'id': 'idPost1',
+				'attributes': {
+					'title': 'post1',
+					'content': 'post content'
+				},
+				'relationships': {
+					'comments': {
+						'data': [
+							{
+								'id': 1,
+								'type': 'comment'
+							},
+							{
+								'id': 2,
+								'type': 'comment'
+							}
+						]
+					}
+				}
+			}
+		};
+	});
+
+	this.get('/comments/:id', (schema, request) => {
+		let id = request.params.id;
+
+		if (id === '1') {
+			return {
+				'data': {
+					'type': 'comment',
+					'id': 1,
+					'attributes': {
+						'commentator': 'Jeff',
+						'content': 'Good Very Good',
+						'time': new Date('2018-11-01').getTime(),
+						'isLike': true,
+						'reply': 115
+					}
+				}
+			};
+		}
+		return {
+			'data': {
+				'type': 'comment',
+				'id': 2,
+				'attributes': {
+					'commentator': 'Tom',
+					'content': 'NOt GOOD ENOUGH',
+					'time': new Date('2018-11-08').getTime(),
+					'isLike': false,
+					'reply': 555
+				}
+			}
+		};
+	});
+
+	this.get('/comments', (schema, request) => {
+		return {
+			'data': [{
 				'type': 'comment',
 				'id': 1,
 				'attributes': {
@@ -103,10 +191,10 @@ export default function () {
 					'isLike': false,
 					'reply': 555
 				}
-			}
-			]
+			}]
 		};
 	});
+
 
 	this.get('/campuses', () => {
 		return {
@@ -127,5 +215,42 @@ export default function () {
 				}
 			}]
 		};
+	});
+
+
+	this.get('/bjCompanies', ({ bjCompanies }, request) => {
+		return bjCompanies.all();
+	});
+
+	this.get('/bjCompanies/:id', ({ bjCompanies }, request) => {
+		let id = request.params.id,
+			company = bjCompanies.find(id);
+
+		company.update({
+			'name': faker.company.companyName(),
+			'location': faker.address.streetAddress(),
+			'employee': faker.random.number()
+		});
+		// return {
+		// 	'data': [{
+		// 		'type': 'bj-company',
+		// 		'id': 1,
+		// 		'attributes': {
+		// 			'name': 'pharbers',
+		// 			'location': '东直门',
+		// 			'employee': 12
+		// 		}
+		// 	},
+		// 	{
+		// 		'type': 'bj-company',
+		// 		'id': 2,
+		// 		'attributes': {
+		// 			'name': 'BlackMirror',
+		// 			'location': '东外',
+		// 			'employee': 16
+
+		// 		}
+		// 	}]
+		// };
 	});
 }
