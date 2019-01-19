@@ -38,14 +38,14 @@ export default Route.extend({
 				});
 		},
 		updateRecord(id) {
-			console.log(id);
-			this.get('store').findRecord('bjCompany', id)
-				.then(data => {
-					data.set('name', 'AliBaBa');
-					data.incrementProperty('employee');
-				});
+			let data = this.get('store').peekRecord('bjCompany', id);
+
+			data.set('name', 'AliBaBa');
+			data.incrementProperty('employee');
+			data.save();
 		},
-		deleteRecord() {
+		deleteRecord(id) {
+			console.log(id);
 
 		}
 	}

@@ -222,7 +222,13 @@ export default function () {
 		return bjCompanies.all();
 	});
 
-	this.get('/bjCompanies/:id', ({ bjCompanies }, request) => {
+	// this.get('/bjCompanies/:id', ({ bjCompanies }, request) => {
+	// 	let id = request.params.id,
+	// 		company = bjCompanies.find(id);
+
+	// 	return company;
+	// });
+	this.patch('/bjCompanies/:id', ({ bjCompanies }, request) => {
 		let id = request.params.id,
 			company = bjCompanies.find(id);
 
@@ -231,26 +237,6 @@ export default function () {
 			'location': faker.address.streetAddress(),
 			'employee': faker.random.number()
 		});
-		// return {
-		// 	'data': [{
-		// 		'type': 'bj-company',
-		// 		'id': 1,
-		// 		'attributes': {
-		// 			'name': 'pharbers',
-		// 			'location': '东直门',
-		// 			'employee': 12
-		// 		}
-		// 	},
-		// 	{
-		// 		'type': 'bj-company',
-		// 		'id': 2,
-		// 		'attributes': {
-		// 			'name': 'BlackMirror',
-		// 			'location': '东外',
-		// 			'employee': 16
-
-		// 		}
-		// 	}]
-		// };
+		return company;
 	});
 }
