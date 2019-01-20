@@ -39,6 +39,7 @@ export default function () {
 			}]
 		};
 	});
+
 	this.get('/phones', () => {
 		return {
 			'data': {
@@ -195,7 +196,6 @@ export default function () {
 		};
 	});
 
-
 	this.get('/campuses', () => {
 		return {
 			'data': [{
@@ -217,11 +217,13 @@ export default function () {
 		};
 	});
 
-
 	this.get('/bjCompanies', ({ bjCompanies }, request) => {
 		return bjCompanies.all();
 	});
 
+	this.get('/companies', ({ companies }, request) => {
+		return companies.all();
+	});
 	// this.get('/bjCompanies/:id', ({ bjCompanies }, request) => {
 	// 	let id = request.params.id,
 	// 		company = bjCompanies.find(id);
