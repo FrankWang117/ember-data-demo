@@ -4,6 +4,8 @@ export default function () {
 
 	this.namespace = '/';
 
+	this.timing = 200;
+
 	this.get('/authors', (schema) => {
 		return schema.authors.all();
 	});
@@ -40,25 +42,25 @@ export default function () {
 		};
 	});
 
-	this.get('/phones', () => {
-		return {
-			'data': {
-				'type': 'phone',
-				'id': 1,
-				'attributes': {
-					'brand': 'Nokia',
-					'capacity': 64,
-					'size': {
-						'width': 70.9,
-						'height': 143.6,
-						'depth': 7.7,
-						'weight': 177
-					},
-					'display': 5.8
-				}
-			}
-		};
-	});
+	// this.get('/phones', () => {
+	// 	return {
+	// 		'data': {
+	// 			'type': 'phone',
+	// 			'id': 1,
+	// 			'attributes': {
+	// 				'brand': 'Nokia',
+	// 				'capacity': 64,
+	// 				'size': {
+	// 					'width': 70.9,
+	// 					'height': 143.6,
+	// 					'depth': 7.7,
+	// 					'weight': 177
+	// 				},
+	// 				'display': 5.8
+	// 			}
+	// 		}
+	// 	};
+	// });
 
 	this.post('/articles');
 
@@ -223,6 +225,18 @@ export default function () {
 
 	this.get('/companies', ({ companies }, request) => {
 		return companies.all();
+	});
+
+	this.get('/phones', ({ phones }, request) => {
+		return phones.all();
+	});
+
+	this.get('/phones/:id', ({ phones }, request) => {
+		let id = request.params.id,
+			phone = phones.find(id);
+
+
+		return phone;
 	});
 	// this.get('/bjCompanies/:id', ({ bjCompanies }, request) => {
 	// 	let id = request.params.id,

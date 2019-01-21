@@ -1,23 +1,23 @@
 import DS from 'ember-data';
 
 export default DS.JSONAPISerializer.extend({
-	modelNameFromPayloadKey(key) {
-		return key;
-	},
-	payloadKeyFromModelName(key) {
-		return key;
-	},
-	serialize(snapshot, options) {
-		let json = this._super(...arguments);
+	// modelNameFromPayloadKey(key) {
+	// 	return key;
+	// },
+	// payloadKeyFromModelName(key) {
+	// 	return key;
+	// },
+	// serialize(snapshot, options) {
+	// 	let json = this._super(...arguments);
 
-		json.data.attributes.depth = json.data.attributes.size.depth;
-		return json;
-	},
-	serializeAttribute(snapshot, json, key, attributes) {
+	// 	json.data.attributes.depth = json.data.attributes.size.depth;
+	// 	return json;
+	// },
+	// serializeAttribute(snapshot, json, key, attributes) {
 
-		json.attributes = json.attributes || {};
-		this._super(snapshot, json.attributes, key, attributes);
-	},
+	// 	json.attributes = json.attributes || {};
+	// 	this._super(snapshot, json.attributes, key, attributes);
+	// }
 	// normalizeResponse(store, primaryModelClass, payload, id, requestType) {
 	// 	console.table(payload);
 
@@ -30,18 +30,18 @@ export default DS.JSONAPISerializer.extend({
 	// 	delete hash.attributes.size;
 	// 	return this._super.apply(this, arguments);
 	// },
-	normalizeQueryRecordResponse(store, primaryModelClass, payload) {
-		let data = payload.data.attributes;
+	// normalizeQueryRecordResponse(store, primaryModelClass, payload) {
+	// 	let data = payload.data.attributes;
 
-		payload.data.attributes.depth = data.size ? data.size.depth : data.depth;
-		delete payload.data.attributes.size;
-		return this._super(...arguments);
-	},
-	normalizeFindAllResponse(store, primaryModelClass, payload) {
-		let data = payload.data.attributes;
+	// 	payload.data.attributes.depth = data.size ? data.size.depth : data.depth;
+	// 	delete payload.data.attributes.size;
+	// 	return this._super(...arguments);
+	// },
+	// normalizeFindAllResponse(store, primaryModelClass, payload) {
+	// 	let data = payload.data.attributes;
 
-		payload.data.attributes.depth = data.size ? data.size.depth : data.depth;
-		delete payload.data.attributes.size;
-		return this._super(...arguments);
-	}
+	// 	payload.data.attributes.depth = data.size ? data.size.depth : data.depth;
+	// 	delete payload.data.attributes.size;
+	// 	return this._super(...arguments);
+	// }
 });

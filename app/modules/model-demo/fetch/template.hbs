@@ -1,6 +1,75 @@
 <h3>Fetch - FindAll</h3>
 <table class="table table-striped table-hover">
-	<thead class="tead-dark">
+	<thead class="tead-dark text-center">
+		<th>id</th>
+		<th>name</th>
+		<th>logo</th>
+		<th>Address</th>
+		<th>Employee</th>
+		<th>Founding Time</th>
+		<th>Local</th>
+		<th>Product</th>
+	</thead>
+	<tbody>
+		{{#each model as |comp|}}
+			<tr>
+				<td>{{comp.id}}</td>
+				<td>{{comp.name}}</td>
+				<td><img class="img-thumbnail" width="100" src={{comp.logo}} alt={{comp.name}}></td>
+				<td>{{comp.address}}</td>
+				<td>{{comp.employee}}</td>
+				<td>{{comp.foundingTime}}</td>
+				<td>{{comp.isLocation}}</td>
+				<td>
+					{{#each comp.phones as |p|}}
+						{{p.brand}}
+					{{/each}}
+				</td>
+			</tr>
+		{{/each}}
+	</tbody>
+</table>
+<h4>FindAll options</h4>
+<button type="button" class="btn btn-success" {{action 'requestAgain'}}>Reload</button>
+<table class="table table-striped table-hover mt-3">
+	<thead class="tead-dark text-center">
+		<th>id</th>
+		<th>name</th>
+		<th>logo</th>
+		<th>Address</th>
+		<th>Employee</th>
+		<th>Founding Time</th>
+		<th>Local</th>
+		<th>Product</th>
+	</thead>
+	<tbody>
+		{{#each companiesAgain as |comp|}}
+			<tr>
+				<td>{{comp.id}}</td>
+				<td>{{comp.name}}</td>
+				<td><img class="img-thumbnail" width="100" src={{comp.logo}} alt={{comp.name}}></td>
+				<td>{{comp.address}}</td>
+				<td>{{comp.employee}}</td>
+				<td>{{comp.foundingTime}}</td>
+				<td>{{comp.isLocation}}</td>
+				<td>
+					{{#each comp.phones as |p|}}
+						{{p.brand}}
+					{{/each}}
+				</td>
+			</tr>
+		{{else}}
+			<div class="alert alert-warning" role="alert">
+				No Data.
+			</div>
+		{{/each}}
+	</tbody>
+</table>
+<h3>Fetch - peekAll</h3>
+<button type="button" class="btn btn-success" {{action 'peekAlreadyExistModel'}}>peekAlreadyExistModel</button>
+<button type="button" class="btn btn-success" {{action 'peekNoExistModel'}}>peekNoExistModel</button>
+<table class="table table-striped table-hover mt-3">
+	<thead class="tead-dark text-center">
 		<th>id</th>
 		<th>name</th>
 		<th>logo</th>
@@ -10,16 +79,63 @@
 		<th>Local</th>
 	</thead>
 	<tbody>
-		{{#each model as |comp|}}
+		{{#each peekAlreadyExistModel as |comp|}}
 			<tr>
 				<td>{{comp.id}}</td>
 				<td>{{comp.name}}</td>
-				<td><img class="img-thumbnail" src= {{comp.logo}} alt= {{comp.name}}></td>
+				<td><img class="img-thumbnail" width="100" src={{comp.logo}} alt={{comp.name}}></td>
 				<td>{{comp.address}}</td>
 				<td>{{comp.employee}}</td>
 				<td>{{comp.foundingTime}}</td>
 				<td>{{comp.isLocation}}</td>
 			</tr>
+		{{else}}
+			<div class="alert alert-warning" role="alert">
+				No Data.
+			</div>
 		{{/each}}
 	</tbody>
 </table>
+<h3>Fetch - FindRecord</h3>
+<button type="button" class="btn btn-success" {{action 'findSingleRecord'}}>findSingleRecord</button>
+<button type="button" class="btn btn-secondary" {{action 'fSRpreload'}}>fSRpreload</button>
+<table class="table table-striped table-hover mt-3">
+	<thead class="tead-dark text-center">
+		<th>id</th>
+		<th>brand</th>
+		<th>Company</th>
+	</thead>
+	<tbody class="text-center">
+		<tr>
+			<td>{{findSingleRecord.id}}</td>
+			<td>{{findSingleRecord.brand}}</td>
+			<td>{{findSingleRecord.company.name}}</td>
+		</tr>
+		<tr class="table-secondary">
+			<td>{{fSRpreload.id}}</td>
+			<td>{{fSRpreload.brand}}</td>
+			<td>{{fSRpreload.company.name}}</td>
+		</tr>
+	</tbody>
+</table>
+<button type="button" class="btn btn-secondary" {{action 'queryFilter'}}>queryFilter</button>
+<table class="table table-striped table-hover mt-3">
+	<thead class="tead-dark text-center">
+		<th>id</th>
+		<th>name</th>
+		<th>Local</th>
+	</thead>
+	<tbody class="text-center">
+		{{#each queryFilter as |comp|}}
+			<tr>
+				<td>{{comp.id}}</td>
+				<td>{{comp.name}}</td>
+				<td>{{comp.isLocation}}</td>
+			</tr>
+		{{else}}
+			<div class="alert alert-warning" role="alert">
+				No Data.
+			</div>
+		{{/each}}
+	</tbody>
+</table>queryFilter

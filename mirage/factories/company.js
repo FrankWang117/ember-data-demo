@@ -1,4 +1,4 @@
-import { Factory } from 'ember-cli-mirage';
+import { Factory, faker, trait } from 'ember-cli-mirage';
 
 export default Factory.extend({
 	'name': faker.company.companyName,
@@ -15,5 +15,10 @@ export default Factory.extend({
 
 	'logo'() {
 		return faker.random.image();
-	}
+	},
+	'phones': trait({
+		afterCreate(company, server) {
+			server.createList('phone', 3, { company });
+		}
+	})
 });
