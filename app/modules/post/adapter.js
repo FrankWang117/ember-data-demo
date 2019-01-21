@@ -16,4 +16,6 @@ export default DS.JSONAPIAdapter.extend({
 		console.log(type);
 		return underscore(type);
 	}
+
+
 });
