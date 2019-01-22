@@ -11,11 +11,8 @@ export default DS.JSONAPIAdapter.extend({
 			'Content-Type': 'application/json',
 			'Authorization': `bearer selfToken`
 		};
-	}),
-	patyForType(type) {
-		console.log(type);
-		return underscore(type);
-	}
-
-
+	})
+	// patyForType(type) {
+	// 	return underscore(type);
+	// }
 });

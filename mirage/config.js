@@ -6,9 +6,9 @@ export default function () {
 
 	this.timing = 200;
 
-	this.get('/authors', (schema) => {
-		return schema.authors.all();
-	});
+	// this.get('/authors', (schema) => {
+	// 	return schema.authors.all();
+	// });
 
 	this.get('/people', () => {
 		return {
@@ -42,29 +42,15 @@ export default function () {
 		};
 	});
 
-	// this.get('/phones', () => {
-	// 	return {
-	// 		'data': {
-	// 			'type': 'phone',
-	// 			'id': 1,
-	// 			'attributes': {
-	// 				'brand': 'Nokia',
-	// 				'capacity': 64,
-	// 				'size': {
-	// 					'width': 70.9,
-	// 					'height': 143.6,
-	// 					'depth': 7.7,
-	// 					'weight': 177
-	// 				},
-	// 				'display': 5.8
-	// 			}
-	// 		}
-	// 	};
-	// });
-
 	this.post('/articles');
-
-	this.get('/posts', () => {
+	/**
+	 * modelName: post
+	 * not support filter
+	 * relationship hasMany - comments
+	 */
+	this.get('/posts', ({ posts }, request) => {
+		return posts.all();
+		/*
 		return {
 			'data': [{
 				'type': 'post',
@@ -109,8 +95,10 @@ export default function () {
 			// 		'reply': 555
 			// 	}
 			// }]
-		};
+
+		};*/
 	});
+
 
 	this.get('/posts/:id', () => {
 		return {
@@ -139,65 +127,74 @@ export default function () {
 		};
 	});
 
-	this.get('/comments/:id', (schema, request) => {
-		let id = request.params.id;
+	/**
+	 * modelName: author
+	 * not support filter
+	 * relationship hasMany - posts
+	 */
+	this.get('authors', ({ authors }, request) => {
+		return authors.all();
+	});
+	/*
+			this.get('/comments/:id', (schema, request) => {
+				let id = request.params.id;
 
-		if (id === '1') {
-			return {
-				'data': {
-					'type': 'comment',
-					'id': 1,
-					'attributes': {
-						'commentator': 'Jeff',
-						'content': 'Good Very Good',
-						'time': new Date('2018-11-01').getTime(),
-						'isLike': true,
-						'reply': 115
+				if (id === '1') {
+					return {
+						'data': {
+							'type': 'comment',
+							'id': 1,
+							'attributes': {
+								'commentator': 'Jeff',
+								'content': 'Good Very Good',
+								'time': new Date('2018-11-01').getTime(),
+								'isLike': true,
+								'reply': 115
+							}
+						}
+					};
+				}
+				return {
+					'data': {
+						'type': 'comment',
+						'id': 2,
+						'attributes': {
+							'commentator': 'Tom',
+							'content': 'NOt GOOD ENOUGH',
+							'time': new Date('2018-11-08').getTime(),
+							'isLike': false,
+							'reply': 555
+						}
 					}
-				}
-			};
-		}
-		return {
-			'data': {
-				'type': 'comment',
-				'id': 2,
-				'attributes': {
-					'commentator': 'Tom',
-					'content': 'NOt GOOD ENOUGH',
-					'time': new Date('2018-11-08').getTime(),
-					'isLike': false,
-					'reply': 555
-				}
-			}
-		};
-	});
+				};
+			});
 
-	this.get('/comments', (schema, request) => {
-		return {
-			'data': [{
-				'type': 'comment',
-				'id': 1,
-				'attributes': {
-					'commentator': 'Jeff',
-					'content': 'Good Very Good',
-					'time': new Date('2018-11-01').getTime(),
-					'isLike': true,
-					'reply': 115
-				}
-			}, {
-				'type': 'comment',
-				'id': 2,
-				'attributes': {
-					'commentator': 'Tom',
-					'content': 'NOt GOOD ENOUGH',
-					'time': new Date('2018-11-08').getTime(),
-					'isLike': false,
-					'reply': 555
-				}
-			}]
-		};
-	});
-
+			this.get('/comments', (schema, request) => {
+				return {
+					'data': [{
+						'type': 'comment',
+						'id': 1,
+						'attributes': {
+							'commentator': 'Jeff',
+							'content': 'Good Very Good',
+							'time': new Date('2018-11-01').getTime(),
+							'isLike': true,
+							'reply': 115
+						}
+					}, {
+						'type': 'comment',
+						'id': 2,
+						'attributes': {
+							'commentator': 'Tom',
+							'content': 'NOt GOOD ENOUGH',
+							'time': new Date('2018-11-08').getTime(),
+							'isLike': false,
+							'reply': 555
+						}
+					}]
+				};
+			});
+	*/
 	this.get('/campuses', () => {
 		return {
 			'data': [{
@@ -222,9 +219,22 @@ export default function () {
 	this.get('/bjCompanies', ({ bjCompanies }, request) => {
 		return bjCompanies.all();
 	});
-
+	/**
+	 * modelName: company
+	 * only support filter-isLocation
+	 * relationship hasMany - phone
+	 */
 	this.get('/companies', ({ companies }, request) => {
-		return companies.all();
+		let comp = [];
+
+		if (Object.keys(request.queryParams).length === 0) {
+			comp = companies.all();
+		} else {
+			let filteredisLocale = request.queryParams['filter[isLocation]'] !== 'false';
+
+			comp = companies.where({ isLocation: filteredisLocale });
+		}
+		return comp;
 	});
 
 	this.get('/phones', ({ phones }, request) => {

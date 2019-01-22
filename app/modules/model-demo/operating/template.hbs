@@ -1,0 +1,33 @@
+<h3>show post</h3>
+<table class="table table-striped text-center">
+	<thead class="thead-dark">
+		<th>Id</th>
+		<th>Title</th>
+		<th>Author</th>
+		<th>WritedTime</th>
+		<th>isOriginal</th>
+		<th>Like</th>
+		<th>Address</th>
+		<th>Comments</th>
+	</thead>
+	<tbody class="text-center">
+		{{#each model as |p|}}
+			<tr>
+				<td>{{p.id}}</td>
+				<td>{{p.title}}</td>
+				<td>{{p.author.nickName}}</td>
+				<td>{{p.writedTime}}</td>
+				<td>
+					{{#if p.isOriginal}}
+						原创
+					{{else}}
+						非原创
+					{{/if}}
+				</td>
+				<td>{{p.like}}</td>
+				<td><a href={{p.url}}>点击查看</a></td>
+				<td>{{p.comments.length}}</td>
+			</tr>
+		{{/each}}
+	</tbody>
+</table>

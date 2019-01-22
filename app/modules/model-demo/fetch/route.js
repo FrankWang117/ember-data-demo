@@ -57,11 +57,19 @@ export default Route.extend({
 		queryFilter() {
 			this.get('store').query('company', {
 				filter: {
-					isLocale: true
+					isLocation: true
 				}
 			}).then(companies => {
 				this.controllerFor('model-demo.fetch').set('queryFilter', companies);
-
+			});
+		},
+		querySingleRecord() {
+			this.get('store').query('company', {
+				filter: {
+					isLocation: true
+				}
+			}).then(companies => {
+				this.controllerFor('model-demo.fetch').set('querySingleRecord', companies.get('firstObject'));
 			});
 		}
 

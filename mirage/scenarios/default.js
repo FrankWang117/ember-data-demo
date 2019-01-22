@@ -1,9 +1,12 @@
 // import { Server } from 'tls';
 
 export default function (server) {
+	server.create('author', 'posts');
+
 	server.createList('author', 10);
 	server.createList('bj-company', 5);
 	server.createList('company', 5, 'phones');
+	server.createList('post', 5, 'comments');
 
 	// server.createList('post', 10, 'withComments');
 	/**
