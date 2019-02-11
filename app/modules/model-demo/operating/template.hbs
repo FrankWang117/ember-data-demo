@@ -31,3 +31,42 @@
 		{{/each}}
 	</tbody>
 </table>
+<h3>Opearting</h3>
+<h4>Create New Record</h4>
+<button class="btn btn-success" {{action "createNewRecord"}}>
+	Create
+</button>
+<table class="table table-striped text-center mt-3">
+	<thead class="thead-light">
+		<th>Id</th>
+		<th>Title</th>
+		<th>WritedTime</th>
+		<th>isOriginal</th>
+		<th>Like</th>
+		<th>Address</th>
+		<th>Update</th>
+	</thead>
+	<tbody class="text-center">
+		<tr>
+			{{#if newPost.id}}
+				<td>{{newPost.id}}</td>
+				<td>{{newPost.title}}</td>
+				<td>{{newPost.writedTime}}</td>
+				<td>
+					{{#if newPost.isOriginal}}
+						原创
+					{{else}}
+						非原创
+					{{/if}}
+				</td>
+				<td>{{newPost.like}}</td>
+				<td><a href={{newPost.url}}>点击查看</a></td>
+				<td><button class="btn btn-warning" {{action "updateExistRecord" newPost.id}}>Update</button></td>
+			{{else}}
+				<td>请点击 Create 按钮</td>
+			{{/if}}
+		</tr>
+	</tbody>
+</table>
+<h4>Update Record</h4>
+<p>我们将改变上面新生成的post中的标题与like</p>

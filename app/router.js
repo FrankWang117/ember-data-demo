@@ -7,20 +7,23 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function () {
-    this.route('customizing-serializer', function () {
-        this.route('format');
-        this.route('transform');
-    });
-    this.route('jsonapiadapter', function () {
-        this.route('properties');
-        this.route('urlconventions');
-        this.route('fetchrecord');
-        this.route('generate-id-for-record');
-    });
-    this.route('model-demo', function () {
-      this.route('fetch');
-      this.route('operating');
-    });
+  this.route('customizing-serializer', function () {
+      this.route('format');
+      this.route('transform');
+  });
+  this.route('jsonapiadapter', function () {
+      this.route('properties');
+      this.route('urlconventions');
+      this.route('fetchrecord');
+      this.route('generate-id-for-record');
+  });
+  this.route('model-demo', function () {
+    this.route('fetch');
+    this.route('operating');
+  });
+  this.route('js-function', function() {
+    this.route('ajax');
+  });
 });
 
 export default Router;

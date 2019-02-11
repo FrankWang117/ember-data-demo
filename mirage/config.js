@@ -100,33 +100,39 @@ export default function () {
 	});
 
 
-	this.get('/posts/:id', () => {
-		return {
-			'data': {
-				'type': 'post',
-				'id': 'idPost1',
-				'attributes': {
-					'title': 'post1',
-					'content': 'post content'
-				},
-				'relationships': {
-					'comments': {
-						'data': [
-							{
-								'id': 1,
-								'type': 'comment'
-							},
-							{
-								'id': 2,
-								'type': 'comment'
-							}
-						]
-					}
-				}
-			}
-		};
+	/**
+	 * modelName: post
+	 * use to create a new record
+	 */
+	this.post('posts', ({ posts }, request) => {
+		let newRecord = JSON.parse(request.requestBody).data.attributes,
+			post = posts.create(newRecord);
+
+		post.save();
+		return post;
 	});
 
+	/**
+	 * modelName: post
+	 * support filter by id
+	 */
+	this.get('/posts/:id', ({ posts }, request) => {
+		let post = posts.find(request.params.id);
+
+		return post;
+	});
+	/**
+	 * modelName: post
+	 * use to update record by record id
+	 */
+	this.patch('/posts/:id', ({ posts }, request) => {
+		let id = request.params.id,
+			post = posts.find(id),
+			totalUpdateRecord = JSON.parse(request.requestBody).data.attributes;
+
+		post.update(totalUpdateRecord);
+		return post;
+	});
 	/**
 	 * modelName: author
 	 * not support filter
@@ -244,7 +250,6 @@ export default function () {
 	this.get('/phones/:id', ({ phones }, request) => {
 		let id = request.params.id,
 			phone = phones.find(id);
-
 
 		return phone;
 	});

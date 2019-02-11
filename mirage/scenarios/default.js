@@ -6,7 +6,7 @@ export default function (server) {
 	server.createList('author', 10);
 	server.createList('bj-company', 5);
 	server.createList('company', 5, 'phones');
-	server.createList('post', 5, 'comments');
+	server.createList('post', 3, 'comments');
 
 	// server.createList('post', 10, 'withComments');
 	/**
